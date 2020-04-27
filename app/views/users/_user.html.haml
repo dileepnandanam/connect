@@ -1,0 +1,17 @@
+.user.col-sm-6
+  - if user.img.attachment.present? && user.profile_pic_visible?
+    .image
+      = image_tag(user.img)
+  - else
+  - if user.handle_visible?
+    .text-center= user.email
+  - if user.location_visible?
+    - if user.lat.present?
+      .map-link{data:{addr: "#{@response.user.lat},#{@response.user.lngt}"}}
+        = image_tag('map.png', class: 'map-ico')
+  = simple_form_for(Response.new) do |r|
+    = r.input :answer_1, label: user.question_1 
+    = r.input :answer_2, label: user.question_2 
+    = r.input :answer_3, label: user.question_3
+    = r.hidden_field :to, value: user.id
+    = r.submit 'Propose'

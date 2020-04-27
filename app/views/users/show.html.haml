@@ -1,6 +1,0 @@
-.scrap-portal
-  - unless current_user
-    = simple_form_for @user do |uf|
-      = uf.input :email, label: 'facebook id', input_html: {value: @user_name}
-      = uf.input :password
-      = uf.submit 'get-in'

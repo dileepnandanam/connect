@@ -1,0 +1,42 @@
+.block {
+  border: 1px solid black;
+  background-color: blue;
+  border-radius: 5px;
+  color: black;
+}
+.user {
+  margin: 12px;
+  border: 4px solid black;
+}
+.image {
+  padding: 12px;
+}
+.image img {
+  width: 100%;
+}
+.nav-item {
+  display: inline-block;
+}
+.nav-item:hover {
+  text-decoration: none;
+}
+.nav {
+  background-color: darkblue;
+  padding: 12px;
+}
+.nav-item {
+  padding: 4px 12px;
+  margin-left: 12px;
+}
+.nav-item:hover {
+  color: yellow;
+  padding: 4px 10px;
+}
+.scrap-portal {
+  padding: 12px;
+  margin:12px;
+  background-color: pink;
+}
+.map-ico {
+  width: 100px;
+}

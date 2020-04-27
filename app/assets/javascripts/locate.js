@@ -80,8 +80,10 @@ send_user_location = function(position) {
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
     method: 'PUT',
     data: {
-      lat: position.coords.latitude,
-      lngt: position.coords.longitude
+      user: {
+        lat: position.coords.latitude,
+        lngt: position.coords.longitude
+      }
     }
   })
 }

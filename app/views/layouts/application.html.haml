@@ -11,4 +11,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .nav
+      - if current_user
+        = link_to current_user.email, edit_user_path(current_user), class: 'pull-right nav-item block'
+        = link_to 'locate me', users_path, class: 'pull-right nav-item block i-am-here'
+      = link_to 'Home', users_path, class: 'pull-right nav-item block'
+
     = yield
