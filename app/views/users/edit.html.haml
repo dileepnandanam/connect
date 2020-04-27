@@ -1,0 +1,14 @@
+.scrap-portal
+  = simple_form_for @user do |uf|
+    = uf.input :img, label: 'profile pic'
+    = uf.input :gender, as: :radio_buttons, collection: ['male', 'female', 'other'].map{|p| [p, p]}, value_method: :first, input_method: :last
+    %h4
+      do you have anything to ask?
+    = uf.input :question_1
+    = uf.input :question_2
+    = uf.input :question_3
+    = uf.input :city
+    = uf.input :handle_visible
+    = uf.input :profile_pic_visible
+    = uf.input :location_visible
+    = uf.submit 'update'
