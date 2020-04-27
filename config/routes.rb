@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :users do
     get 'login', on: :collection
   end
-  resource :responses
-  get '/:id', to: 'users#login'
+  resources :responses
+  get '/:id', to: 'users#create'
 end

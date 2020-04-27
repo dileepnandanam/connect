@@ -1,3 +1,4 @@
+- user = User.find(response.from_user_id)
 .user.col-sm-6
   - if user.img.attachment.present? && user.profile_pic_visible?
     .image
@@ -9,9 +10,16 @@
     - if user.lat.present?
       .map-link{data:{addr: "#{@response.user.lat},#{@response.user.lngt}"}}
         = image_tag('map.png', class: 'map-ico')
-  = simple_form_for(Response.new) do |r|
-    = r.input :answer_1, label: user.question_1 
-    = r.input :answer_2, label: user.question_2 
-    = r.input :answer_3, label: user.question_3
-    = r.hidden_field :to_user_id, value: user.id
-    = r.submit 'Propose'
+  %h2 answers
+    %strong= user.question_1
+    .clearfix
+    = response.answer_1
+    %br
+    %strong= user.question_2
+    .clearfix
+    = response.answer_2
+    %br
+    %strong= user.question_3
+    .clearfix
+    = response.answer_3
+    %br

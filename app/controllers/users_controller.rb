@@ -1,12 +1,5 @@
 class UsersController < ApplicationController
   before_action :authorize, only: [:update]
-  def login
-    @user = current_user || User.new
-    @user_name = params[:id]
-    if current_user
-      redirect_to users_path and return
-    end
-  end
 
   def show
     @user = User.find(params[:id])
@@ -27,11 +20,14 @@ class UsersController < ApplicationController
   end
 
   def locate
-    binding.pry
     current_user.update params.require(:user).permit(:lat, :lngt)
   end
 
   protected
+
+  def exists(email)
+    User.where(email: email).first
+  end
 
   def user_params
     params.require(:user).permit(:img, :question_1, :question_2, :question_3, :gender, :handle_visible, :location_visible, :profile_pic_visible, :lat, :lngt)

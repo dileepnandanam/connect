@@ -1,0 +1,9 @@
+.sign-container
+  %h2 Sign up
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :email, label: 'facebook id'
+      = f.input :password                                        
+    .form-actions
+      = f.button :submit, "Sign up"
