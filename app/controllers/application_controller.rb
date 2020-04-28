@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   def authorize
     unless current_user
-      render 'noaccess' and return
+      render plain: 'unauthorized' and return
     end
   end
 end

@@ -27,4 +27,9 @@
 
 body {
   font-size: 24px;
+  overflow: hidden;
+}
+.page {
+  width: 100%;
+  position-x: fixed;
 }

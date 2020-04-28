@@ -1,2 +1,24 @@
-- @responses.each do |r|
-  = render partial: 'response', locals: {response: r}
+- @responses.each do |response|
+  - user = current_user
+  .user.col-sm-6
+    - if user.img.attachment.present? && user.profile_pic_visible?
+      .image
+        = image_tag(user.img)
+    - else
+    - if user.handle_visible?
+      .text-center= user.email
+    - if user.location_visible?
+      - if user.lat.present?
+        .map-link{data:{addr: "#{@response.user.lat},#{@response.user.lngt}"}}
+          = image_tag('map.png', class: 'map-ico')
+    .response-content
+      %h2 answers
+      - [1,2,3].each do |i|
+        - if response["answer_#{i}"].present?
+          .question
+            = user["question_#{i}"]
+          .answer
+            = response["answer_#{i}"]
+    = link_to 'accept', accept_response_path(response), method: :put, class: 'pull-left nav-item block user-action', remote: true
+    = link_to 'reject', reject_response_path(response), method: :put, class: 'pull-right nav-item block user-action', remote: true
+    .clearfix

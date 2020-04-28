@@ -1,0 +1,27 @@
+.chat-container {
+  width: 100%;
+  padding: 12px;
+}
+.chat-thread {
+  border-radius: 6px;
+  border: 2px solid blue;
+  min-height: 100px;
+  width: 100%;
+  padding: 12px;
+  background-color: pink;
+  overflow: scroll;
+  max-height: 400px;
+}
+.chat-box {
+  width: 100% !important;
+  margin-top: 12px;
+}
+.chat {
+  padding: 6px 8px;
+  color: black;
+  background-color: lightgreen;
+  margin: 12px;
+  border-radius: 6px;
+  border-color: black;
+  clear: both;
+}

@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     current_user.update params.require(:user).permit(:lat, :lngt)
   end
 
+  def switch
+    sign_in(:user, User.find(params[:id]))
+    redirect_to root_path
+  end
+
   protected
 
   def exists(email)
