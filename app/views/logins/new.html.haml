@@ -1,0 +1,5 @@
+.sign-container
+  = simple_form_for :user, url: logins_url do |f|
+    = f.input :email, label: 'facebook id', input_html:{value: params[:id]}
+    = f.input :password, label: 'password (do not enter facebook password)'
+    = f.submit 'get in'

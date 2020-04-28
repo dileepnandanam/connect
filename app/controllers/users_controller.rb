@@ -15,8 +15,11 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update user_params
-    redirect_to users_path
+    if @user.update user_params
+      redirect_to users_path
+    else
+      render 'edit'
+    end
   end
 
   def locate
@@ -35,6 +38,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:img, :question_1, :question_2, :question_3, :gender, :handle_visible, :location_visible, :profile_pic_visible, :lat, :lngt, :age)
+    params.require(:user).permit(:img, :gender, :age, :question_1, :question_2, :question_3, :city, :handle_visible, :profile_pic_visible, :location_visible)
   end
 end

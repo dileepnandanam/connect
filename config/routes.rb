@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     put :accept, on: :member
     put :reject, on: :member
   end
-
   resources :chats
-
+  resources :logins
+  get '/:id', to: 'logins#new', constraints: { id: /[a-zA-Z0-9\.]*/ }
 end

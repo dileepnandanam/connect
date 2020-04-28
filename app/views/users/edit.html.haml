@@ -2,6 +2,8 @@
   = simple_form_for @user do |uf|
     = uf.input :img, label: 'profile pic'
     = uf.input :gender, as: :radio_buttons, collection: ['male', 'female', 'other'].map{|p| [p, p]}, value_method: :first, input_method: :last
+    
+    = uf.input :age
     %h4
       do you have anything to ask?
     = uf.input :question_1
