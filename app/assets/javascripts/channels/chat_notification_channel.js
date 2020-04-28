@@ -7,6 +7,7 @@ $(document).on('turbolinks:load', function() {
       received(data) {
         audio.play()
         $('.chat-thread').append(data.message)
+        $('.chat-thread').scrollTop($('.chat-thread').prop('scrollHeight'))
       }
     })
     notification_subscribed = 1
