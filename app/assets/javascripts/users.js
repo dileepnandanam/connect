@@ -1,7 +1,9 @@
 initMasonry = function() {
-  $('.users').masonry({
-    itemSelector: '.user',
-    gutter: 1000
+  $('.users').imagesLoaded(function() {
+    $('.users').masonry({
+      itemSelector: '.user',
+      gutter: 100
+    })
   })
 }
 

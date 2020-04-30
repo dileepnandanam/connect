@@ -88,13 +88,14 @@ input[type='submit'] {
   border-radius: 10px;
 }
 .search-gender {
-  padding: 12px;
+  padding: 8px 12px;
   border-radius: 10px;
   margin: 8px;
-  background-image: linear-gradient(blue, red, black);
+  background: blue;
   color: white;
   display: inline-block;
 }
 .search-gender:hover {
   text-decoration: none;
+  color: black;
 }
