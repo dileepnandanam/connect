@@ -22,12 +22,17 @@ class ResponsesController < ApplicationController
     Response.where(from_user_id: @response.from_user_id).delete_all
     User.where(id: current_user.spouse_id).first.update spouse_id: current_user.id
   
+    Chat.where('user_id in (?)', [current_user.id, current_user.spouse_id]).delete_all
     message = ApplicationController.render(
       partial: 'chats/chat_bar',
       locals: { user: current_user }
     )
-    ApplicationCable::acceptNotificationsChannel.broadcast_to(
+    ApplicationCable::AcceptNotificationsChannel.broadcast_to(
       current_user.spouse,
+      message: message
+    )
+    ApplicationCable::AcceptNotificationsChannel.broadcast_to(
+      current_user,
       message: message
     )
 

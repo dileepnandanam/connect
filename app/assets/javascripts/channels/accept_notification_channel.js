@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
     App.cable.subscriptions.create("ApplicationCable::AcceptNotificationsChannel", {
       received(data) {
         audio.play()
-        $('.nav').append(data)
+        $('.nav').append(data.message)
       }
     })
     accept_notification_subscribed = 1
