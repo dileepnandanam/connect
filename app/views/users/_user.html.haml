@@ -1,17 +1,29 @@
-.user
-  - if user.img.attachment.present? && user.profile_pic_visible?
-    .image
-      = image_tag(user.img)
+.user.col-sm-4.pull-left
+  .user-thumb
+    - if user.img.attachment.present? && user.profile_pic_visible?
+      .image
+        = image_tag(user.img)
+    - elsif user.gender == 'male'
+      .image.placeholder
+        = image_tag('boy.jpg')
+    - else
+      .image.placeholder
+        = image_tag('girl.jpeg')
+
     .text-center= "#{user.gender} #{user.age}"
-  - if user.handle_visible?
-    .text-center= link_to user.email, "https://www.facebook.com/#{user.email}"
-  = simple_form_for(Response.new, html: {remote: true}) do |r|
-    = r.input :answer_1, label: user.question_1 
-    = r.input :answer_2, label: user.question_2 
-    = r.input :answer_3, label: user.question_3
-    = r.hidden_field :to_user_id, value: user.id
-    = r.submit 'Propose'
-    - if user.location_visible?
-      - if user.lat.present?
-        .map-link{data:{addr: "#{user.lat},#{user.lngt}"}}
-          = image_tag('map.png', class: 'map-ico')
+    - if user.handle_visible?
+      .text-center= link_to user.email, user.facebook_link
+    = simple_form_for(Response.new, html: {remote: true}) do |r|
+      - if user.question_1.present?
+        = r.input :answer_1, label: user.question_1 
+      - if user.question_2.present?
+        = r.input :answer_2, label: user.question_2 
+      - if user.question_3.present?
+        = r.input :answer_3, label: user.question_3
+      = r.hidden_field :to_user_id, value: user.id
+      - if current_user
+        = r.submit 'Propose'
+      - if user.location_visible? && false
+        - if user.lat.present?
+          .map-link{data:{addr: "#{user.lat},#{user.lngt}"}}
+            = image_tag('map.png', class: 'map-ico')

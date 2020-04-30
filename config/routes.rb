@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     get :switch, on: :member
     get 'login', on: :collection
+    get 'search', on: :collection
   end
   resources :responses do
     put :accept, on: :member

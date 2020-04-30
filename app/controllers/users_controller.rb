@@ -6,7 +6,17 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(per_page: 12, page: params[:page])
+    my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
+    @users = User.where('id not in (?)', my_proposals)
+  end
+
+  def search
+    my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
+    gender = params[:gender]
+    query = params[:query]
+    @users = User.where('spouse_id is NULL and gender = ?', gender)
+                 .where("#{query} = '%tags%'")
+                 .where('users.id not in (?)', my_proposals)
   end
 
   def edit
@@ -16,6 +26,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update user_params
+      @user.set_tags
       redirect_to users_path
     else
       render 'edit'

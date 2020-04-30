@@ -1,3 +1,10 @@
+= text_field_tag 'search', nil, placeholder: 'search', class: 'search'
+.clearfix
+= link_to 'male', '#', class: 'male search-gender search-male'
+= link_to 'female', '#', class: 'female search-gender search-female'
+= link_to 'others', '#', class: 'others search-gender search-others'
+
 .users
   - @users.each do |user|
     = render partial: 'user', locals: {user: user}
+.clearfix

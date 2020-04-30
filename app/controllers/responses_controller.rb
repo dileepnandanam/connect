@@ -1,9 +1,13 @@
 class ResponsesController < ApplicationController
+  before_action :authorize, only: [:create, :accept, :reject]
   def create
-    if Response.where(to_user_id: response_params[:to_user_id], from_user_id: response_params[:from_user_id]).first.present?
-      render plain: 'no more', layout: false and return
+    @target = User.find(response_params[:to_user_id])
+
+    if Response.where(to_user_id: response_params[:to_user_id], from_user_id: current_user.id).first.present?
+      render plain: 'You have Already Proposed', layout: false, status: 422 and return
     end
     @esponse = Response.create response_params.merge(from_user_id: current_user.id)
+    render plain: "you have proposed. wait for a response.", layout: false
   end
 
   def index

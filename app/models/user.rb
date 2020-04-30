@@ -7,9 +7,15 @@ class User < ApplicationRecord
   has_one :spouse, class_name: 'User', foreign_key: :spouse_id
   validates :email, presence: true
   validates :age, presence: true
-  validates :question_1, presence: true
-  validates :question_2, presence: true
-  validates :question_3, presence: true
   validates :city, presence: true
   validates :gender, presence: true
+  validates :handle, presence: {
+    message: -> (object, data) {
+      "nick name must be present"
+    }
+  }
+
+  def set_tags
+    update tags: "#{email} #{age} #{question_1} #{question_2} #{question_3} #{city} #{gender}".gsub(/[\.-_]/, ' ')
+  end
 end

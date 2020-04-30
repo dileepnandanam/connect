@@ -3,7 +3,7 @@
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = f.error_notification
     .form-inputs
-      = f.input :email, label: 'facebook id'
+      = f.input :email, label: 'email'
       = f.input :password, label: 'password (do not give your facebook password)'                                     
     .form-actions
       = f.button :submit, "Sign up"
