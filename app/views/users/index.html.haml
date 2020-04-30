@@ -4,7 +4,5 @@
 = link_to 'female', '#', class: 'female search-gender search-female'
 = link_to 'others', '#', class: 'others search-gender search-others'
 
-.users
-  - @users.each do |user|
-    = render partial: 'user', locals: {user: user}
-.clearfix
+
+= render partial: 'users', locals: {users: @users}

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable
   has_one_attached :img
   validates :email, uniqueness: true
-  has_one :spouse, class_name: 'User', foreign_key: :spouse_id
+  belongs_to :spouse, class_name: 'User', foreign_key: :spouse_id, optional: true
   validates :email, presence: true
   validates :age, presence: true
   validates :city, presence: true

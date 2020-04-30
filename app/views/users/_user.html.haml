@@ -9,10 +9,11 @@
     - else
       .image.placeholder
         = image_tag('girl.jpeg')
-
     .text-center= "#{user.gender} #{user.age}"
     - if user.handle_visible?
       .text-center= link_to user.email, user.facebook_link
+    - if user.location_visible?
+      .text-center= user.city
     = simple_form_for(Response.new, html: {remote: true}) do |r|
       - if user.question_1.present?
         = r.input :answer_1, label: user.question_1 
@@ -23,7 +24,3 @@
       = r.hidden_field :to_user_id, value: user.id
       - if current_user
         = r.submit 'Propose'
-      - if user.location_visible? && false
-        - if user.lat.present?
-          .map-link{data:{addr: "#{user.lat},#{user.lngt}"}}
-            = image_tag('map.png', class: 'map-ico')

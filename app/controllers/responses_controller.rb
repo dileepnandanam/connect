@@ -21,6 +21,16 @@ class ResponsesController < ApplicationController
     Response.where(from_user_id: current_user).delete_all
     Response.where(from_user_id: @response.from_user_id).delete_all
     User.where(id: current_user.spouse_id).first.update spouse_id: current_user.id
+  
+    message = ApplicationController.render(
+      partial: 'chats/chat_bar',
+      locals: { user: current_user }
+    )
+    ApplicationCable::acceptNotificationsChannel.broadcast_to(
+      current_user.spouse,
+      message: message
+    )
+
   end
 
   def reject

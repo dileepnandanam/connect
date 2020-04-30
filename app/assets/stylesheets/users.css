@@ -27,6 +27,10 @@ textarea {
 .image {
   padding: 12px;
 }
+.placeholder {
+  width: 80%;
+  margin: auto;
+}
 .image img {
   width: 100%;
 }
@@ -46,7 +50,6 @@ textarea {
 }
 .nav-item:hover {
   color: yellow;
-  padding: 4px 11px;
 }
 .scrap-portal {
   padding: 12px;
@@ -64,9 +67,8 @@ input[type='submit'] {
   max-width: 400px;
   justify-content: center;
   margin: auto;
-  border: 3px solid pink;
+  border: 2px solid #a2626d;
   margin-top: 12px;
-  padding: 12px;
 }
 .question {
   background-color: pink;
@@ -88,9 +90,10 @@ input[type='submit'] {
 .search-gender {
   padding: 12px;
   border-radius: 10px;
-  margin: 12px;
-  background-image: linear-gradient(blue, lightblue, black);
+  margin: 8px;
+  background-image: linear-gradient(blue, red, black);
   color: white;
+  display: inline-block;
 }
 .search-gender:hover {
   text-decoration: none;

@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function() {
       data: {
         query: query,
         gender: gender
-      }, success(data) {
+      }, success: function(data) {
         $('.users').replaceWith(data)
       }
     })
@@ -26,11 +26,14 @@ $(document).on('turbolinks:load', function() {
 
   $('.search-male').click(function(e) {
     search('male')
+    e.preventDefault()
   })
   $('.search-female').click(function(e) {
     search('female')
+    e.preventDefault()
   })
   $('.search-others').click(function(e) {
-    search('others')
+    search('other')
+    e.preventDefault()
   })
 })

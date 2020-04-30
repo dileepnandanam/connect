@@ -6,17 +6,25 @@ class UsersController < ApplicationController
   end
 
   def index
-    my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
-    @users = User.where('id not in (?)', my_proposals)
+    if current_user
+      my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
+      @users = User.where('id not in (?)', my_proposals)
+    else
+      @users = User.where(spouse_id: nil)
+    end
   end
 
   def search
-    my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
     gender = params[:gender]
-    query = params[:query]
-    @users = User.where('spouse_id is NULL and gender = ?', gender)
-                 .where("#{query} = '%tags%'")
-                 .where('users.id not in (?)', my_proposals)
+    query = params[:query].to_s
+    @users = User.where('spouse_id is NULL')
+                 .where(gender: gender) 
+                 .where(" tags like '%#{query}%'")
+    if current_user
+      my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
+      @users = @users.where('users.id not in (?)', my_proposals)
+    end
+    render partial: 'users', locals: {users: @users}, layout: false, status: 200
   end
 
   def edit
@@ -49,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:img, :gender, :age, :question_1, :question_2, :question_3, :city, :handle_visible, :profile_pic_visible, :location_visible)
+    params.require(:user).permit(:img, :gender, :age, :question_1, :question_2, :question_3, :city, :handle, :handle_visible, :profile_pic_visible, :location_visible, :facebook_link)
   end
 end
