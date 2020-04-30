@@ -8,7 +8,7 @@
         = image_path('boy.jpg')
     - else
       .image.placeholder
-        = image_path('girl.jpeg')
+        = image_path('girl.jpg')
     .text-center= "#{user.gender} #{user.age}"
     - if user.handle_visible?
       .text-center= link_to user.handle, user.facebook_link

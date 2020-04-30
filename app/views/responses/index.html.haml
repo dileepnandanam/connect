@@ -7,10 +7,10 @@
           = image_tag(user.img)
       - elsif user.gender == 'male'
         .image.placeholder
-          = image_tag('boy.jpg')
+          = image_path('boy.jpg')
       - else
         .image.placeholder
-          = image_tag('girl.jpeg')
+          = image_path('girl.jpg')
       .text-center= "#{user.gender} #{user.age}"
       - if user.handle_visible?
         .text-center= link_to user.email, user.facebook_link
