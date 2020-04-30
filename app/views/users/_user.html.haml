@@ -11,7 +11,9 @@
         = image_tag('girl.jpeg')
     .text-center= "#{user.gender} #{user.age}"
     - if user.handle_visible?
-      .text-center= link_to user.email, user.facebook_link
+      .text-center= link_to user.handle, user.facebook_link
+    - else
+      .text-center= user.handle
     - if user.location_visible?
       .text-center= user.city
     = simple_form_for(Response.new, html: {remote: true}) do |r|
