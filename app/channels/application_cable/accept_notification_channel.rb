@@ -1,5 +1,5 @@
 module ApplicationCable
-  class acceptNotificationsChannel < ApplicationCable::Channel
+  class AcceptNotificationsChannel < ApplicationCable::Channel
     def subscribed
       stream_for current_user
     end
