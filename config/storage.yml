@@ -8,8 +8,8 @@ local:
 
 amazon:
   service: S3
-  access_key_id: ENV['AKI'] %>
-  secret_access_key: ENV['ACK'] %>
+  access_key_id: <%= ENV['AKI'] %>
+  secret_access_key: <%= ENV['ACK'] %>
   region: ap-south-1
   bucket: facebookmatrimony
 
