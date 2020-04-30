@@ -1,4 +1,12 @@
+initMasonry = function() {
+  $('.users').masonry({
+    itemSelector: '.user',
+    gutter: 1000
+  })
+}
+
 $(document).on('turbolinks:load', function() {
+  initMasonry()
   $(document).on('ajax:success', '.new_response', function(e) {
     $(this).replaceWith(e.detail[2].responseText)
   })
@@ -20,6 +28,7 @@ $(document).on('turbolinks:load', function() {
         gender: gender
       }, success: function(data) {
         $('.users').replaceWith(data)
+        initMasonry()
       }
     })
   }
