@@ -5,6 +5,9 @@ class LoginsController < ApplicationController
   end
 
   def create
+    if params[:user][:password].blank? || params[:user][:email].blank?
+      render 'new' and return
+    end
     @user = User.find_by_email(params[:user][:email])
     if @user.blank?
       @user = User.new(params.require(:user).permit(:email, :password))
@@ -15,7 +18,7 @@ class LoginsController < ApplicationController
       sign_in :user, @user
       redirect_to users_path
     else
-      flash[:notice] = 'facebook id or password incorrect'
+      flash[:notice] = 'password incorrect'
       render 'new'
     end
   end
