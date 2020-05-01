@@ -2,3 +2,4 @@
   - users.each do |user|
     = render partial: 'user', locals: {user: user}
 .clearfix
+.page-links= will_paginate(@users, gender: params[:gender], query: params[:query], renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)

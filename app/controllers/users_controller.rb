@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     else
       @users = User.where(spouse_id: nil)
     end
+    @users = @users.paginate(per_page: 12, page: params[:page])
   end
 
   def search
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
       my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
       @users = @users.where('users.id not in (?)', my_proposals)
     end
+    @users = @users.paginate(per_page: 12, page: params[:page])
     render partial: 'users', locals: {users: @users}, layout: false, status: 200
   end
 

@@ -16,6 +16,6 @@ class User < ApplicationRecord
   }
 
   def set_tags
-    update tags: "#{email} #{age} #{question_1} #{question_2} #{question_3} #{city} #{gender}".gsub(/[\.-_]/, ' ')
+    update tags: "#{email} #{age} #{question_1} #{question_2} #{question_3} #{city} #{gender} #{handle}".gsub(/[\.-_]/, ' ')
   end
 end

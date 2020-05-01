@@ -1,0 +1,16 @@
+- if user.img.attachment.present? && user.profile_pic_visible?
+  .image
+    = image_tag(user.img)
+- elsif user.gender == 'male'
+  .image.placeholder
+    = image_tag(image_path('boy.jpg'))
+- else
+  .image.placeholder
+    = image_tag(image_path('girl.jpg'))
+- if user.handle_visible?
+  .text-center= link_to user.handle, user.facebook_link
+- else
+  .text-center= user.handle
+.text-center= "#{user.gender} #{user.age}"
+- if user.location_visible?
+  .text-center= user.city

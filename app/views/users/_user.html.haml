@@ -1,21 +1,6 @@
 .user.col-sm-4.pull-left
   .user-thumb
-    - if user.img.attachment.present? && user.profile_pic_visible?
-      .image
-        = image_tag(user.img)
-    - elsif user.gender == 'male'
-      .image.placeholder
-        = image_tag(image_path('boy.jpg'))
-    - else
-      .image.placeholder
-        = image_tag(image_path('girl.jpg'))
-    .text-center= "#{user.gender} #{user.age}"
-    - if user.handle_visible?
-      .text-center= link_to user.handle, user.facebook_link
-    - else
-      .text-center= user.handle
-    - if user.location_visible?
-      .text-center= user.city
+    = render partial: 'user_details', locals: {user: user}
     = simple_form_for(Response.new, html: {remote: true}) do |r|
       - if user.question_1.present?
         = r.input :answer_1, label: user.question_1 
@@ -25,4 +10,4 @@
         = r.input :answer_3, label: user.question_3
       = r.hidden_field :to_user_id, value: user.id
       - if current_user
-        = r.submit 'Propose'
+        .text-center= r.submit 'Propose'

@@ -8,7 +8,7 @@
   color: black;
 }
 input[type='submit'] {
-  margin-bottom: 12px;
+  margin: 12px;
   border: 1px solid black;
   font-size: 24px;
   background-color: blue;
@@ -21,8 +21,9 @@ textarea {
   padding-bottom: 12px;
 }
 .user-thumb {
-  background-color: pink;
+  background-color: #ddcd37;
   padding: 12px;
+  border: 2px solid #f6f6ec;
 }
 .image {
   padding: 12px;
@@ -69,6 +70,7 @@ input[type='submit'] {
   margin: auto;
   border: 2px solid #a2626d;
   margin-top: 12px;
+  background-color: gold;
 }
 .question {
   background-color: pink;

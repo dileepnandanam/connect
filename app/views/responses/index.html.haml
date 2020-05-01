@@ -3,20 +3,7 @@
     - user = User.find(response.from_user_id)
     .user.col-sm-4.pull-left
       .user-thumb
-        - if user.img.attachment.present? && user.profile_pic_visible?
-          .image
-            = image_tag(user.img)
-        - elsif user.gender == 'male'
-          .image.placeholder
-            = image_tag(image_path('boy.jpg'))
-        - else
-          .image.placeholder
-            = image_tag(image_path('girl.jpg'))
-        .text-center= "#{user.gender} #{user.age}"
-        - if user.handle_visible?
-          .text-center= link_to user.handle, user.facebook_link
-        - if user.location_visible?
-          .text-center= user.city
+        = render partial: 'users/user_details', locals: {user: user}
         .response-content
           %h2 answers
           - [1,2,3].each do |i|
@@ -25,6 +12,6 @@
                 = user["question_#{i}"]
               .answer
                 = response["answer_#{i}"]
-        = link_to 'accept', accept_response_path(response), method: :put, class: 'pull-left nav-item block user-action', remote: true
-        = link_to 'reject', reject_response_path(response), method: :put, class: 'pull-right nav-item block user-action', remote: true
+        = link_to 'accept', accept_response_path(response), method: :put, class: 'pull-left nav-item block user-action accept', remote: true
+        = link_to 'reject', reject_response_path(response), method: :put, class: 'pull-right nav-item block user-action reject', remote: true
         .clearfix

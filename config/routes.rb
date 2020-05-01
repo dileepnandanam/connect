@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :responses do
     put :accept, on: :member
     put :reject, on: :member
+    put :escape, on: :member
   end
   resources :chats
   resources :logins

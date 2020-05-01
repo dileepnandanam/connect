@@ -33,10 +33,10 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'redis-rails'
-group :development, :test do
-  gem "binding_of_caller"
-  gem "better_errors"
-end
+#group :development, :test do
+#  gem "binding_of_caller"
+#  gem 'better_errors', git: 'https://github.com/charliesome/better_errors.git', branch: 'master'
+#end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

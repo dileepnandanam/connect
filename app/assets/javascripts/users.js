@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function() {
   })
 
   $(document).on('ajax:success', '.user-action', function(e) {
-    $(this).closest('.user').html("You have found your spouse. start chating <a href='/chats'> here </a>")
+    $(this).siblings('.response-content').html(e.detail[2].responseText)
   })
 
   search = function(gender) {
