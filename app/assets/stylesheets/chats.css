@@ -22,6 +22,6 @@
   background-color: lightgreen;
   margin: 12px;
   border-radius: 6px;
-  border-color: black;
+  border: 1px solid black;
   clear: both;
 }

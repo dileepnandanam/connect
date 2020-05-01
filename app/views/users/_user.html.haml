@@ -3,11 +3,11 @@
     = render partial: 'user_details', locals: {user: user}
     = simple_form_for(Response.new, html: {remote: true}) do |r|
       - if user.question_1.present?
-        = r.input :answer_1, label: user.question_1 
+        %strong= r.input :answer_1, label: user.question_1 
       - if user.question_2.present?
-        = r.input :answer_2, label: user.question_2 
+        %strong= r.input :answer_2, label: user.question_2 
       - if user.question_3.present?
-        = r.input :answer_3, label: user.question_3
+        %strong= r.input :answer_3, label: user.question_3
       = r.hidden_field :to_user_id, value: user.id
       - if current_user
         .text-center= r.submit 'Propose'
