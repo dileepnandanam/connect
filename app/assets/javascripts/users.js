@@ -47,4 +47,8 @@ $(document).on('turbolinks:load', function() {
     search('other')
     e.preventDefault()
   })
+
+  $('.unsigned').click(function(e) {
+    window.location.href = '/logins/new'
+  })
 })

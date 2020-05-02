@@ -1,4 +1,4 @@
-.user.col-sm-4.pull-left
+.user.col-sm-4.pull-left{class: current_user.present? ? 'signed' : 'unsigned'}
   .user-thumb
     = render partial: 'user_details', locals: {user: user}
     = simple_form_for(Response.new, html: {remote: true}) do |r|
@@ -11,3 +11,4 @@
       = r.hidden_field :to_user_id, value: user.id
       - if current_user
         .text-center= r.submit 'Propose'
+
