@@ -5,16 +5,16 @@
     = uf.input :img, label: 'profile pic'
     = uf.input :profile_pic_visible, label: 'profile pic visible to all'
     = uf.input :handle, label: 'nickname'
-    = uf.input :facebook_link
+    = uf.input :facebook_link, label: 'facebook link (optional)'
     = uf.input :handle_visible, label: 'facebook link visible to all'
     = uf.input :gender, as: :radio_buttons, collection: ['male', 'female', 'other'].map{|p| [p, p]}, value_method: :first, input_method: :last
     
     = uf.input :age
     %h3
       What you will aks to the one who is proposing you
-    = uf.input :question_1
-    = uf.input :question_2
-    = uf.input :question_3
+    = uf.input :question_1, label: 'Question 1 (optional)' 
+    = uf.input :question_2, label: 'Question 2 (optional)'
+    = uf.input :question_3, label: 'Question 3 (optional)'
     = uf.input :city
     = uf.input :location_visible
     = uf.submit 'update'
