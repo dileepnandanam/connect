@@ -4,5 +4,5 @@
 = link_to 'female', '#', class: 'female search-gender search-female'
 = link_to 'others', '#', class: 'others search-gender search-others'
 
-
-= render partial: 'users', locals: {users: @users}
+.users-container
+  = render partial: 'users', locals: {users: @users}

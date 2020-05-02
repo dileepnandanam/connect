@@ -23,13 +23,13 @@ $(document).on('turbolinks:load', function() {
   search = function(gender) {
     query = $('.search').val()
     $.ajax({
-      url: 'users/search',
+      url: 'users',
       method: 'GET',
       data: {
         query: query,
         gender: gender
       }, success: function(data) {
-        $('.users').replaceWith(data)
+        $('.users-container').html(data)
         initMasonry()
       }
     })
@@ -50,5 +50,9 @@ $(document).on('turbolinks:load', function() {
 
   $('.unsigned').click(function(e) {
     window.location.href = '/logins/new'
+  })
+  $(document).on('ajax:success', '.paginate', function(e) {
+    $('.view-more').replaceWith(e.detail[2].responseText)
+    initMasonry()
   })
 })

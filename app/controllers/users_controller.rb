@@ -12,21 +12,22 @@ class UsersController < ApplicationController
     else
       @users = User.where(spouse_id: nil)
     end
-    @users = @users.paginate(per_page: 12, page: params[:page])
-  end
+    
+    if params[:gender].present?
+      @users = @users.where(gender: params[:gender])
+    end
 
-  def search
-    gender = params[:gender]
-    query = params[:query].to_s
-    @users = User.where('spouse_id is NULL')
-                 .where(gender: gender) 
-                 .where(" tags like '%#{query}%'")
-    if current_user
-      my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
-      @users = @users.where('users.id not in (?)', my_proposals)
+    if params[:query].present?
+      query_statements = params[:query].split(' ')
+      query = query_statements.map{|s| " tags like '%#{s}%'"}.join(' and ')
+      @users = @users.where(query)
     end
     @users = @users.paginate(per_page: 12, page: params[:page])
-    render partial: 'users', locals: {users: @users}, layout: false, status: 200
+    if request.format.html?
+      render 'index'
+    else
+      render partial: 'users', locals: {users: @users}
+    end
   end
 
   def edit

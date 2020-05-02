@@ -2,4 +2,6 @@
   - users.each do |user|
     = render partial: 'user', locals: {user: user}
 .clearfix
-.page-links= will_paginate(@users, gender: params[:gender], query: params[:query], renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
+- if users.next_page.present?
+  .view-more
+    = link_to 'view more', users_path(query: params[:query], gender: params[:gender], page: (params[:page].present? ? params[:page].to_i + 1 : 2)), class: 'nav-item block'
