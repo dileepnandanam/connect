@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
     if params[:query].present?
       query_statements = params[:query].split(' ')
-      query = query_statements.map{|s| " tags like '%#{s}%'"}.join(' and ')
+      query = query_statements.map{|s| " LOWER(tags) like '%#{s.downcase}%'"}.join(' and ')
       @users = @users.where(query)
     end
     @users = @users.paginate(per_page: 12, page: params[:page])
