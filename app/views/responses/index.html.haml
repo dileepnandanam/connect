@@ -1,6 +1,6 @@
 .users
   - @responses.each do |response|
-    - user = User.find(response.from_user_id)
+    - user = User.find(response.to_user_id)
     .user.col-sm-4.pull-left
       .user-thumb
         = render partial: 'users/user_details', locals: {user: user}
