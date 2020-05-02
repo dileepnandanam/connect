@@ -68,6 +68,7 @@ textarea {
 }
 input[type='submit'] {
   margin-bottom: 12px;
+  padding: 8px 12px;
 }
 .sign-container {
   padding-top: 12px;
