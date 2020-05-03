@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update user_params
       @user.set_tags
-      redirect_to users_path
+      redirect_to user_path(current_user)
     else
       render 'edit'
     end

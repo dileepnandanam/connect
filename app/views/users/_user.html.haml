@@ -9,6 +9,6 @@
       - if user.question_3.present?
         %strong= r.input :answer_3, label: user.question_3
       = r.hidden_field :to_user_id, value: user.id
-      - if current_user
+      - if current_user && current_user != user
         .text-center= r.submit 'Propose'
 
