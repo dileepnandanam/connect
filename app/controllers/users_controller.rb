@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     if current_user
       my_proposals = Response.where(from_user_id: current_user.id).select('responses.to_user_id')
       @users = User.where('id not in (?)', my_proposals)
+      @users = @users.where('id <> ?', current_user.id)
     else
       @users = User.where(spouse_id: nil)
     end
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
       query = query_statements.map{|s| " LOWER(tags) like '%#{s.downcase}%'"}.join(' and ')
       @users = @users.where(query)
     end
-    @users = @users.where('id <> ?', current_user.try(:id))
     @users = @users.paginate(per_page: 12, page: params[:page])
     if request.format.html?
       render 'index'
