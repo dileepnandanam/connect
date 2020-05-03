@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
 
   def set_https
     if Rails.env != "development"
-      unless request.url.starts_with?('https')
-        redirect_to request.url.gsub('http', 'https') and return
+      unless request.url.starts_with?('http')
+        redirect_to request.url.gsub('https', 'http') and return
       end
     end
   end
