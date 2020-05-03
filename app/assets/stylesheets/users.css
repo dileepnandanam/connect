@@ -15,7 +15,8 @@
   text-decoration: none;
 }
 input[type='submit']:hover {
-  background-color: #dfe0e3;
+  background-color: #bf4129;
+  box-shadow: 1px 1px 5px #8a2f03, 1px 1px 5px #7e0804;
 }
 textarea {
   border: 1px solid blue !important;
@@ -69,6 +70,7 @@ textarea {
 input[type='submit'] {
   margin-bottom: 12px;
   padding: 8px 12px;
+  font-size: 24px;
 }
 .sign-container {
   padding: 12px;

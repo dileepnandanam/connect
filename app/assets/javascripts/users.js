@@ -11,13 +11,17 @@ $(document).on('turbolinks:load', function() {
   initMasonry()
   $(document).on('ajax:success', '.new_response', function(e) {
     $(this).replaceWith(e.detail[2].responseText)
+    initMasonry()
   })
   $(document).on('ajax:error', '.new_response', function(e) {
     $(this).replaceWith(e.detail[2].responseText)
+    initMasonry()
   })
 
   $(document).on('ajax:success', '.user-action', function(e) {
     $(this).siblings('.response-content').html(e.detail[2].responseText)
+    $(this).closest('.user-thumb').find('.user-action').remove()
+    initMasonry()
   })
 
   search = function(gender) {

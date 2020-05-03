@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       query = query_statements.map{|s| " LOWER(tags) like '%#{s.downcase}%'"}.join(' and ')
       @users = @users.where(query)
     end
-    @usesr = @users.select{|u| u.valid?}
+    @users = @users.where('id <> ?', current_user.id)
     @users = @users.paginate(per_page: 12, page: params[:page])
     if request.format.html?
       render 'index'
