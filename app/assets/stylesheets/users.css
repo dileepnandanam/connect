@@ -77,6 +77,7 @@ input[type='submit'] {
   justify-content: center;
   margin: auto;
   margin-top: 12px;
+  margin-bottom: 12px;
   background-color: white;
   box-shadow: 1px 2px 2px #a0260f, 1px 1px 1px #7e2508;
 }
