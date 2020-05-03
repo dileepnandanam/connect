@@ -1,9 +1,13 @@
 .sign-container
-  %h2 Sign up
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = f.error_notification
+  %h3.text-center
+    Sign up
+  = simple_form_for(resource, as: :user, url: registration_path(:user)) do |uf|
     .form-inputs
-      = f.input :email, label: 'email'
-      = f.input :password, label: 'password (do not give your facebook password)'                                     
+      = uf.input :email, label: 'email'
+      = uf.input :password, label: 'password'
+      = uf.input :handle, label: 'nickname'
+      = uf.input :gender, as: :radio_buttons, collection: ['male', 'female', 'other'].map{|p| [p, p]}, value_method: :first, input_method: :last
+      = uf.input :age
+      = uf.input :city                              
     .form-actions
-      = f.button :submit, "Sign up"
+      = uf.button :submit, "Sign up"

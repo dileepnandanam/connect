@@ -15,6 +15,10 @@ class User < ApplicationRecord
     }
   }
 
+
+  validates_format_of :email,:with => Devise::email_regexp
+  
+  after_create :set_tags
   def set_tags
     update tags: "#{email} #{age} #{question_1} #{question_2} #{question_3} #{city} #{gender} #{handle}"
   end

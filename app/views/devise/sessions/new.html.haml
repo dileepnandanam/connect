@@ -1,10 +1,9 @@
 .sign-container
-  %h2 Log in
-  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .form-inputs
-      = f.input :email, label: 'facebook id'
-      = f.input :password
-      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-    .form-actions
-      = f.button :submit, "Log in"
+  %h3.text-center
+    Login
+  = simple_form_for(resource, as: :user, url: session_path(:user)) do |f|
+    = f.input :email, label: 'email', input_html:{value: params[:id]}
+    = f.input :password, label: 'password'
+    = f.submit 'get in'
+
 

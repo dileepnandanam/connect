@@ -1,7 +1,22 @@
 .sign-container
   %h3.text-center
-    Login or Sign Up
-  = simple_form_for :user, url: logins_url do |f|
+    Login
+  = simple_form_for(User.new, as: :user, url: session_path(:user)) do |f|
     = f.input :email, label: 'email', input_html:{value: params[:id]}
     = f.input :password, label: 'password'
     = f.submit 'get in'
+
+.sign-container
+  %h3.text-center
+    Sign up
+  = simple_form_for(User.new, as: :user, url: registration_path(:user)) do |uf|
+    = uf.error_notification
+    .form-inputs
+      = uf.input :email, label: 'email'
+      = uf.input :password, label: 'password'
+      = uf.input :handle, label: 'nickname'
+      = uf.input :gender, as: :radio_buttons, collection: ['male', 'female', 'other'].map{|p| [p, p]}, value_method: :first, input_method: :last
+      = uf.input :age
+      = uf.input :city                              
+    .form-actions
+      = uf.button :submit, "Sign up"

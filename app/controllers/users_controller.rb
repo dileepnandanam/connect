@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authorize, only: [:update]
 
+
   def show
     @user = User.find(params[:id])
   end
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
       query = query_statements.map{|s| " LOWER(tags) like '%#{s.downcase}%'"}.join(' and ')
       @users = @users.where(query)
     end
+    @usesr = @users.select{|u| u.valid?}
     @users = @users.paginate(per_page: 12, page: params[:page])
     if request.format.html?
       render 'index'

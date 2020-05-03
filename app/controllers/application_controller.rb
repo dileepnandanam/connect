@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :set_https
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:handle, :age, :city, :gender])
+  end
 
   def set_https
     if Rails.env != "development"
