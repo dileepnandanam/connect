@@ -19,10 +19,10 @@
       .nav
         - if current_user
             
-          = link_to current_user.handle || current_user.email, edit_user_path(current_user), class: 'pull-right nav-item block'
+          = link_to current_user.handle || current_user.email, edit_user_registration_path(current_user), class: 'pull-right nav-item block'
           - if false
             = link_to 'locate me', users_path, class: 'pull-right nav-item block i-am-here'
-          = link_to "Log Out", destroy_session_path(User.new), method: :delete, class: 'pull-right nav-item block'
+          
           = link_to 'Home', users_path, class: 'pull-right nav-item block'
           = link_to 'responses', responses_path, class: 'pull-right response-tab nav-item block'
           - if current_user.spouse_id.present?
@@ -30,6 +30,7 @@
         - else
           = link_to "get in", new_login_path, class: 'pull-right nav-item block', rel: :nofollow
           = link_to 'Home', users_path, class: 'pull-right nav-item block'
+        = link_to "Log Out", destroy_session_path(User.new), method: :delete, class: 'pull-right nav-item block'
         .clearfix
       = yield
       
