@@ -22,4 +22,12 @@ class User < ApplicationRecord
   def set_tags
     update tags: "#{email} #{age} #{question_1} #{question_2} #{question_3} #{city} #{gender} #{handle}"
   end
+
+  def new_password
+    new_p = "abcdefghijklmnopqrstuvwxyz1234567890".split('').sample(6).join
+    self.password = new_p
+    self.password_confirmation = new_p
+    self.save
+    new_p
+  end
 end
